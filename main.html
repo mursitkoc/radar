@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radar Screen</title>
-    <link rel="stylesheet" href="main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar Chart with Chart.js</title>
+  <script src="lib\char.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 </head>
-
-<body class="body">
-    
-    <canvas id="myCanvas"></canvas>
-    <div class="radar">
-        <div class="beam"></div>
-        <div class="dot" style="--x:0.5; --y:0.8"></div>
-        <div class="dot" style="--x:0.2; --y:0.3"></div>
-        <div class="dot" style="--x:0.6; --y:0.1"></div>
-        <div class="dot" style="--x:0.4; --y:0.6"></div>
-        <div class="dot" style="--x:0.9; --y:0.7"></div>
-    </div>
+<body>
+    <canvas id="myChart"></canvas>
     <script src="app.js"></script>
-
-
 </body>
-
 </html>

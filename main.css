@@ -14,7 +14,7 @@
     width: inherit;
     aspect-ratio: inherit;
     background: url(https://i.stack.imgur.com/GCbf1.png) center / cover;
-    animation: 1ms rotate linear infinite;
+    animation: 500ms rotate linear infinite;
 }
 
 @keyframes rotate {
@@ -42,7 +42,7 @@
 
 #myCanvas{
     position:absolute;
-    width:100%;
-    height:100%;
+    width: 1600px;;
+    height:900px;
     background:#000000;
 }
