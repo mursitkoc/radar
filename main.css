@@ -14,7 +14,7 @@
     width: inherit;
     aspect-ratio: inherit;
     background: url(https://i.stack.imgur.com/GCbf1.png) center / cover;
-    animation: 200ms rotate linear infinite;
+    animation: 1ms rotate linear infinite;
 }
 
 @keyframes rotate {
