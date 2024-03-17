@@ -3,6 +3,20 @@ const ctx = document.getElementById('myChart').getContext('2d');
 ctx.canvas.style.backgroundColor = 'black';
 // Create the chart data
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Create an empty array to store the dictionaries
+const data1 = [];
+
+// Generate 30 dictionaries with random x and y values
+for (let i = 0; i < 30; i++) {
+  const x = getRandomInt(-100, 100);
+  const y = getRandomInt(-100, 100);
+  data1.push({ x:x, y:y }); // Object shorthand for key-value pairs with same name
+}
+console.log(data1);
 
 const data = {
   datasets: [{
@@ -34,13 +48,21 @@ const data = {
   },
   {
     label:'mihenk',
-    data:[{x:0,y:0,r:0}],
+    data:[{x:0,y:0}],
     backgroundColor: 'rgba(255, 99, 132, 0.2)',
     borderColor: 'rgba(255, 99, 132, 1)',
     borderWidth: 9
+  },
+  {
+    label:'random',
+    data:data1,
+    backgroundColor: 'rgba(0, 255, 0, 0.2)',
+    borderColor: 'rgba(0, 255, 0, 1)',
+    borderWidth: 4
   }
 ]
 };
+
 
 // Create the chart
 const myChart = new Chart(ctx, {
@@ -72,25 +94,7 @@ const myChart = new Chart(ctx, {
         display: false,
         text: 'Axis Center Positioning'
       },
-      defaults: {
-        color: 'lightGreen'
-      },
- 
     }
-    // plugins: {
-    //   datalabels: {
-    //     formatter: (value, context) => {
-    //       const x = context.chart.scales.x.getValueForPixel(context.raw.x);
-    //       const y = context.chart.scales.y.getValueForPixel(context.raw.y);
-    //       const quadrant = Math.round((Math.atan2(y, x) / Math.PI) * 2) + 1;
-    //       return `Q${quadrant}: ${value}`;
-    //     },
-    //     color: 'black'
-    //   }
-    // }
   }
 });
 
-// myChart.options.scales.x.position = 'center';
-// myChart.options.scales.y.position = 'center';
-// myChart.update();
