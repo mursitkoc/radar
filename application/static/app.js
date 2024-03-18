@@ -14,9 +14,9 @@ const data1 = [];
 for (let i = 0; i < 30; i++) {
   const x = getRandomInt(-100, 100);
   const y = getRandomInt(-100, 100);
-  data1.push({ x:x, y:y }); // Object shorthand for key-value pairs with same name
+  data1.push({ x: x, y: y }); // Object shorthand for key-value pairs with same name
 }
-console.log(data1);
+// console.log(data1);
 
 const data = {
   datasets: [{
@@ -47,20 +47,20 @@ const data = {
     borderWidth: 1
   },
   {
-    label:'mihenk',
-    data:[{x:0,y:0}],
+    label: 'mihenk',
+    data: [{ x: 0, y: 0 }],
     backgroundColor: 'rgba(255, 99, 132, 0.2)',
     borderColor: 'rgba(255, 99, 132, 1)',
     borderWidth: 9
   },
   {
-    label:'random',
-    data:data1,
+    label: 'random',
+    data: data1,
     backgroundColor: 'rgba(0, 255, 0, 0.2)',
     borderColor: 'rgba(0, 255, 0, 1)',
     borderWidth: 4
   }
-]
+  ]
 };
 
 
@@ -77,16 +77,16 @@ const myChart = new Chart(ctx, {
         beginAtZero: true,
         suggestedMin: -100,
         suggestedMax: 100,
-        position:'center'
+        position: 'center'
       },
       y: {
         grid: {
           color: 'rgba(0, 230, 0, 0.4)'
         },
         beginAtZero: true,
-       suggestedMin: -100,
+        suggestedMin: -100,
         suggestedMax: 100,
-        position:'center'
+        position: 'center'
       }
     },
     plugins: {
@@ -94,7 +94,8 @@ const myChart = new Chart(ctx, {
         display: false,
         text: 'Axis Center Positioning'
       },
-    }
+    },
+    animation: false
   }
 });
 
