@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,20 @@
   <script src="{{ url_for('static', filename='char.js') }}"></script>
 
 </head>
+
 <body>
-    <canvas id="myChart"></canvas>
-    <script src="{{ url_for('static', filename='app.js') }}"></script>
-    
+  <canvas id="myChart"></canvas>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+
+
+  <h1>WebSocket Chat</h1>
+  <div id="response-list"></div>
+  <div id="additional-messages"></div>
+
+  <input type="text" id="message">
+  <button onclick="sendMessage()">Send</button>
+  <br>
+  <div id="response-list"></div>
 </body>
+
 </html>

@@ -4,7 +4,7 @@ import websockets
 
 app = Flask(__name__)
 
-async def handler(websocket, path):
+async def handler(websocket):
     async for message in websocket:
         print(f"Received message from client: {message}")
         # Process the received message (e.g., modify it)
@@ -20,7 +20,12 @@ def index():
 async def main():
     async with websockets.serve(handler, "", 8765):
         await asyncio.Future()  # run forever
+   
 
 if __name__ == '__main__':
-    # app.run(debug=True)
-    asyncio.run(main())
+    await asyncio.gather(app.run(),)
+    app.run(debug=True),
+    asyncio.run(main()) 
+  
+       
+ 

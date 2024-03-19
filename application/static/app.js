@@ -1,3 +1,27 @@
+
+var ws = new WebSocket("ws://localhost:8765/ws");
+
+ws.onmessage = function(event) {
+  document.getElementById('response').innerHTML = event.data;
+};
+
+function sendMessage() {
+  var message = document.getElementById('message').value;
+  ws.send(message);
+  document.getElementById('message').value = "";
+}
+ws.onmessage = function(event) {
+  // Check for specific message type or criteria
+  if (event) {
+      var newMessage = document.createElement('p');
+      newMessage.textContent = event.data;
+      document.getElementById('additional-messages').appendChild(newMessage);
+  } else {
+      // Existing logic for handling regular messages in response-list
+      // ...
+  }
+};
+
 // Get the canvas element
 const ctx = document.getElementById('myChart').getContext('2d');
 ctx.canvas.style.backgroundColor = 'black';
