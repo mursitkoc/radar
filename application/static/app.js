@@ -1,49 +1,14 @@
 
-var ws = new WebSocket("ws://localhost:8765/ws");
-
-ws.onmessage = function(event) {
-  document.getElementById('response').innerHTML = event.data;
-};
-
-function sendMessage() {
-  var message = document.getElementById('message').value;
-  ws.send(message);
-  document.getElementById('message').value = "";
-}
-ws.onmessage = function(event) {
-  // Check for specific message type or criteria
-  if (event) {
-      var newMessage = document.createElement('p');
-      newMessage.textContent = event.data;
-      document.getElementById('additional-messages').appendChild(newMessage);
-  } else {
-      // Existing logic for handling regular messages in response-list
-      // ...
-  }
-};
+var ws = new WebSocket("ws://localhost:8765");
 
 // Get the canvas element
 const ctx = document.getElementById('myChart').getContext('2d');
 ctx.canvas.style.backgroundColor = 'black';
-// Create the chart data
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// Create an empty array to store the dictionaries
-const data1 = [];
-
-// Generate 30 dictionaries with random x and y values
-for (let i = 0; i < 30; i++) {
-  const x = getRandomInt(-100, 100);
-  const y = getRandomInt(-100, 100);
-  data1.push({ x: x, y: y }); // Object shorthand for key-value pairs with same name
-}
-// console.log(data1);
-
+const data2 = [];
 const data = {
-  datasets: [{
+  datasets: [
+    {
     label: 'kuzey tarafı',
     data: [{
       x: -10,
@@ -79,7 +44,7 @@ const data = {
   },
   {
     label: 'random',
-    data: data1,
+    data: data2,
     backgroundColor: 'rgba(0, 255, 0, 0.2)',
     borderColor: 'rgba(0, 255, 0, 1)',
     borderWidth: 4
@@ -122,4 +87,70 @@ const myChart = new Chart(ctx, {
     animation: false
   }
 });
+function sendMessage() {
+  var message = document.getElementById('message').value;
+  ws.send(message);
+  document.getElementById('message').value = "";
+}
+
+
+
+ws.onmessage = function (event) {
+  const data2 = [];
+  // Check for specific message type or criteria
+  if (event) {
+    // var newMessage = document.createElement('p');
+    // newMessage.textContent = event.data;
+    // document.getElementById('additional-messages').appendChild(newMessage);
+    const jsonData = event.data;
+    const data = JSON.parse(jsonData, (key, value) => {
+      if (typeof value === 'string' && !Number.isNaN(Number(value))) {
+        return Number(value);
+      }
+      return value;
+    });
+
+    
+    for (let i = 0; i < data.length; i++) {
+      const obj = data[i];
+      const newObj = {};
+      Object.entries(obj).forEach(([key, value]) => {
+        if (typeof value === 'number') {
+          newObj[key] = value;
+        } else if (typeof value === 'string' && !Number.isNaN(Number(value))) {
+          newObj[key] = Number(value);
+        } else {
+          newObj[key] = value;
+        }
+      });
+      data2.push(newObj);
+    }
+    myChart.data.datasets[2].data = data2;
+    myChart.update();
+    // console.log(data2);
+  } else {
+    // Existing logic for handling regular messages in response-list
+    // ...
+  }
+};
+
+
+// Create the chart data
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Create an empty array to store the dictionaries
+const data1 = [];
+
+// Generate 30 dictionaries with random x and y values
+for (let i = 0; i < 30; i++) {
+  const x = getRandomInt(-100, 100);
+  const y = getRandomInt(-100, 100);
+  data1.push({ x: x, y: y }); // Object shorthand for key-value pairs with same name
+}
+// console.log(data1);
+
+
 
